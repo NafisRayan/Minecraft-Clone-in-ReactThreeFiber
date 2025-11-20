@@ -3,11 +3,7 @@ const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: 'vertical',
-    gestureDirection: 'vertical',
     smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
 });
 
 function raf(time) {
@@ -17,103 +13,108 @@ function raf(time) {
 
 requestAnimationFrame(raf);
 
-// GSAP Animations
+// GSAP Setup
 gsap.registerPlugin(ScrollTrigger);
 
-// Hero Parallax & Text Reveal
-const heroTimeline = gsap.timeline();
-
-heroTimeline
-    .to('.hero-img', {
-        scale: 1,
-        duration: 1.5,
-        ease: 'power2.out'
-    })
-    .from('h1', {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out'
-    }, '-=1')
-    .to('.subtitle', {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: 'power3.out'
-    }, '-=0.5');
-
-// Parallax effect on scroll for hero image
-gsap.to('.hero-img', {
-    yPercent: 20,
-    ease: 'none',
-    scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-    }
-});
-
-// Text Reveal for Intro
-const splitText = document.querySelectorAll('.big-text');
-splitText.forEach((char, i) => {
-    gsap.from(char, {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-            trigger: char,
-            start: 'top 80%',
-            end: 'bottom 20%',
-            toggleActions: 'play none none reverse'
-        }
-    });
-});
-
-// Project Cards Animation
-const projects = document.querySelectorAll('.project-card');
-projects.forEach((project, i) => {
-    gsap.from(project, {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        delay: i * 0.1,
-        ease: 'power3.out',
-        scrollTrigger: {
-            trigger: project,
-            start: 'top 85%',
-        }
-    });
-});
-
-// Custom Cursor Logic
+// Cursor Logic
 const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
 
 document.addEventListener('mousemove', (e) => {
     gsap.to(cursor, {
-        x: e.clientX - 10,
-        y: e.clientY - 10,
-        duration: 0.1,
-        ease: 'power2.out'
+        x: e.clientX - 5,
+        y: e.clientY - 5,
+        duration: 0.1
+    });
+    gsap.to(follower, {
+        x: e.clientX - 20,
+        y: e.clientY - 20,
+        duration: 0.3
     });
 });
 
-// Hover effects for cursor
-const hoverLinks = document.querySelectorAll('a, .project-card');
-hoverLinks.forEach(link => {
-    link.addEventListener('mouseenter', () => {
-        gsap.to(cursor, {
-            scale: 2,
-            backgroundColor: '#D95D39', // Accent color
-            duration: 0.3
-        });
+// Hero Animations
+const heroTl = gsap.timeline();
+heroTl
+    .from('.hero-title .line', {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power4.out'
+    })
+    .from('.hero-desc', {
+        opacity: 0,
+        y: 20,
+        duration: 1
+    }, '-=0.5')
+    .from('.vision-stack span', {
+        opacity: 0,
+        x: 20,
+        stagger: 0.1,
+        duration: 0.8
+    }, '-=0.8');
+
+// Stats Counter Animation
+const stats = document.querySelectorAll('.stat-num');
+stats.forEach(stat => {
+    const target = parseInt(stat.getAttribute('data-val'));
+    ScrollTrigger.create({
+        trigger: stat,
+        start: 'top 80%',
+        onEnter: () => {
+            gsap.to(stat, {
+                innerHTML: target,
+                duration: 2,
+                snap: { innerHTML: 1 },
+                onUpdate: function () {
+                    stat.innerHTML = Math.ceil(this.targets()[0].innerHTML) + '+';
+                }
+            });
+        }
     });
-    link.addEventListener('mouseleave', () => {
-        gsap.to(cursor, {
-            scale: 1,
-            backgroundColor: '#D95D39',
-            duration: 0.3
-        });
+});
+
+// Service Hover Effect
+const services = document.querySelectorAll('.service-item');
+services.forEach(service => {
+    service.addEventListener('mouseenter', () => {
+        gsap.to(follower, { scale: 2, borderColor: '#5D3FD3' });
+    });
+    service.addEventListener('mouseleave', () => {
+        gsap.to(follower, { scale: 1, borderColor: 'rgba(255,255,255,0.5)' });
+    });
+});
+
+// Process Accordion
+const steps = document.querySelectorAll('.process-step');
+steps.forEach(step => {
+    step.addEventListener('click', () => {
+        // Remove active class from all
+        steps.forEach(s => s.classList.remove('active'));
+        // Add to clicked
+        step.classList.add('active');
+    });
+});
+
+// FAQ Accordion
+const faqs = document.querySelectorAll('.faq-item');
+faqs.forEach(faq => {
+    faq.addEventListener('click', () => {
+        faq.classList.toggle('active');
+    });
+});
+
+// Section Reveal
+const sections = document.querySelectorAll('.section');
+sections.forEach(section => {
+    gsap.from(section.querySelector('.container'), {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: section,
+            start: 'top 70%',
+        }
     });
 });

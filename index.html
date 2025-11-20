@@ -1,82 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Long Game | Portfolio</title>
+    <title>RenderLab | Reflect • Reinvent • Realize</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
+
 <body>
 
     <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav>
+        <div class="logo">RENDERLAB</div>
+        <div class="menu-btn">MENU</div>
+    </nav>
 
     <main>
-        <section class="hero" id="tee">
-            <div class="hero-img-container">
-                <img src="assets/hero.png" alt="The Course" class="hero-img">
-            </div>
-            <div class="hero-content">
-                <h1>The Long Game</h1>
-                <p class="subtitle">A journey through design & development</p>
-            </div>
-        </section>
-
-        <section class="intro" id="approach">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
             <div class="container">
-                <p class="big-text">
-                    Like a well-played round, great work requires patience, strategy, and precision. 
-                    <span class="highlight">I craft digital experiences</span> that navigate the hazards and land perfectly on the green.
-                </p>
-            </div>
-        </section>
-
-        <section class="work" id="fairway">
-            <div class="container">
-                <div class="section-header">
-                    <h2>The Fairway</h2>
-                    <p>Recent Selected Works</p>
+                <div class="hero-text-wrapper">
+                    <h1 class="hero-title">
+                        <span class="line">Reflect</span>
+                        <span class="bullet">•</span>
+                        <span class="line">Reinvent</span>
+                        <span class="bullet">•</span>
+                        <span class="line">Realize</span>
+                    </h1>
                 </div>
-                <div class="gallery">
-                    <div class="project-card">
-                        <div class="card-number">01</div>
-                        <h3>E-Commerce Redesign</h3>
-                        <p>Strategy & UI</p>
-                    </div>
-                    <div class="project-card">
-                        <div class="card-number">02</div>
-                        <h3>Fintech Dashboard</h3>
-                        <p>Frontend Architecture</p>
-                    </div>
-                    <div class="project-card">
-                        <div class="card-number">03</div>
-                        <h3>Luxury Real Estate</h3>
-                        <p>Full Stack Build</p>
+                <div class="hero-sub">
+                    <p class="hero-desc">Launching your business ideas into reality.</p>
+                    <div class="hero-vision">
+                        <p>We unite</p>
+                        <div class="vision-stack">
+                            <span>Brand</span>
+                            <span>+</span>
+                            <span>Design</span>
+                            <span>+</span>
+                            <span>Product</span>
+                        </div>
+                        <p>under one vision.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="contact" id="green">
+        <!-- About Section -->
+        <section class="section about" id="about">
+            <div class="section-label">
+                <span>A</span><span>B</span><span>O</span><span>U</span><span>T</span>
+            </div>
             <div class="container">
-                <h2>The Green</h2>
-                <div class="contact-links">
-                    <a href="#" class="hover-link">Email</a>
-                    <a href="#" class="hover-link">LinkedIn</a>
-                    <a href="#" class="hover-link">Twitter</a>
+                <div class="about-content">
+                    <p class="lead-text">
+                        We are a full-cycle partner, empowering businesses to lead their digital journeys.
+                        Our mission is to consistently challenge conventional standards and raise expectations,
+                        ensuring the best for you.
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-num" data-val="400">0+</span>
+                            <span class="stat-label">People reached</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" data-val="150">0+</span>
+                            <span class="stat-label">Successful Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" data-val="10">0+</span>
+                            <span class="stat-label">Repeating clients</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-num" data-val="5">0+</span>
+                            <span class="stat-label">Years of experience</span>
+                        </div>
+                    </div>
                 </div>
-                <footer>
-                    <p>&copy; 2025 The Long Game.</p>
-                </footer>
             </div>
         </section>
+
+        <!-- Services Section -->
+        <section class="section services" id="services">
+            <div class="section-label">
+                <span>S</span><span>E</span><span>R</span><span>V</span><span>I</span><span>C</span><span>E</span><span>S</span>
+            </div>
+            <div class="container">
+                <div class="service-list">
+                    <div class="service-item">
+                        <span class="service-num">01</span>
+                        <h3 class="service-name">Website Development</h3>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-num">02</span>
+                        <h3 class="service-name">Android/iOS App</h3>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-num">03</span>
+                        <h3 class="service-name">3D & VR Applications</h3>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-num">04</span>
+                        <h3 class="service-name">UI/UX Design</h3>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-num">05</span>
+                        <h3 class="service-name">AI/ML Solutions</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise Section -->
+        <section class="section expertise" id="expertise">
+            <div class="section-label">
+                <span>E</span><span>X</span><span>P</span><span>E</span><span>R</span><span>T</span><span>I</span><span>S</span><span>E</span>
+            </div>
+            <div class="container">
+                <h2>Our Industry Expertise</h2>
+                <div class="expertise-grid">
+                    <!-- Items populated via JS or static -->
+                    <div class="expertise-card">
+                        <h4>Web Development</h4>
+                        <p>Modern Web Applications.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Mobile Apps</h4>
+                        <p>Cross-Platform Mobile Development.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>UI/UX Design</h4>
+                        <p>Beautiful User Experiences.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>E-commerce</h4>
+                        <p>Digital Commerce Solutions.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Startup</h4>
+                        <p>Innovation & Growth Platforms.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Business</h4>
+                        <p>Enterprise Software Solutions.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>AI/ML</h4>
+                        <p>Intelligent Automation.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>AR/VR</h4>
+                        <p>Immersive Experiences.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Telecom</h4>
+                        <p>Communication Technology.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Real Estate</h4>
+                        <p>Property Technology Platforms.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Health & Fitness</h4>
+                        <p>Wellness & Healthcare Apps.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Automotive</h4>
+                        <p>Connected Vehicle Solutions.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Gaming</h4>
+                        <p>Interactive Entertainment.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Fashion</h4>
+                        <p>Style & Retail Innovation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="section process" id="process">
+            <div class="section-label">
+                <span>P</span><span>R</span><span>O</span><span>C</span><span>E</span><span>S</span><span>S</span>
+            </div>
+            <div class="container">
+                <div class="process-steps">
+                    <div class="process-step active">
+                        <div class="step-header">
+                            <span class="step-num">01</span>
+                            <h3>Idea</h3>
+                        </div>
+                        <div class="step-body">
+                            <p>We meet with your team to know more about your project idea and goals. After that, our
+                                team will work together to create an action plan and proposal for your project.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-header">
+                            <span class="step-num">02</span>
+                            <h3>Design</h3>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-header">
+                            <span class="step-num">03</span>
+                            <h3>Develop</h3>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-header">
+                            <span class="step-num">04</span>
+                            <h3>Support</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section team" id="team">
+            <div class="section-label">
+                <span>T</span><span>E</span><span>A</span><span>M</span>
+            </div>
+            <div class="container">
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-info">
+                            <h4>Rahat Chowdhury</h4>
+                            <p>Marketing Specialist</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-info">
+                            <h4>Mubinur Rahman</h4>
+                            <p>Project Manager</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-info">
+                            <h4>Nafis Rayan</h4>
+                            <p>Lead Developer - CEO</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-info">
+                            <h4>Antahi Shiper</h4>
+                            <p>Design Lead</p>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-info">
+                            <h4>Pravakar Das</h4>
+                            <p>Senior Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section query" id="query">
+            <div class="section-label">
+                <span>Q</span><span>U</span><span>E</span><span>R</span><span>Y</span>
+            </div>
+            <div class="container">
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            <span>01</span>
+                            <h4>What services do you offer?</h4>
+                        </div>
+                        <div class="faq-a">
+                            <p>We offer a comprehensive suite of digital services including Web Development, Mobile
+                                Apps, UI/UX Design, and AI Solutions.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            <span>02</span>
+                            <h4>How long does a typical project take?</h4>
+                        </div>
+                        <div class="faq-a">
+                            <p>Timelines vary by complexity, but typically range from 4-8 weeks for standard web
+                                projects to 3-6 months for complex applications.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            <span>03</span>
+                            <h4>Do you work with startups and small businesses?</h4>
+                        </div>
+                        <div class="faq-a">
+                            <p>Absolutely. We love partnering with ambitious startups to help turn their vision into
+                                reality.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            <span>04</span>
+                            <h4>What's your development process?</h4>
+                        </div>
+                        <div class="faq-a">
+                            <p>We follow an agile methodology: Idea -> Design -> Develop -> Support, ensuring
+                                transparency and flexibility.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">
+                            <span>05</span>
+                            <h4>How do you handle project pricing?</h4>
+                        </div>
+                        <div class="faq-a">
+                            <p>We offer both fixed-price project based models and time-and-materials engagement
+                                depending on your needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-top">
+                    <div class="cta">
+                        <h2>Let's do great work together</h2>
+                        <div class="cta-buttons">
+                            <a href="#" class="btn primary">Get in Touch</a>
+                            <a href="#" class="btn secondary">Book a Free Meeting</a>
+                        </div>
+                    </div>
+                    <div class="newsletter">
+                        <h3>Sign up for our newsletter*</h3>
+                        <form>
+                            <input type="email" placeholder="Your Email *">
+                            <button type="submit">→</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-logo">
+                        <span>R</span><span>E</span><span>N</span><span>D</span><span>E</span><span>R</span><span>L</span><span>A</span><span>B</span>
+                    </div>
+                    <div class="copyright">
+                        <p>© 2025 RenderLab. All Rights Reserved.</p>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </main>
 
     <script src="script.js"></script>
 </body>
+
 </html>
