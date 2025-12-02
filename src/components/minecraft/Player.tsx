@@ -1,8 +1,9 @@
 import { useSphere } from '@react-three/cannon';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useKeyboard } from './hooks/useKeyboard';
 import { useStore } from './hooks/useStore';
+import { PlayerModel } from './PlayerModel';
 import * as THREE from 'three';
 
 const JUMP_FORCE = 4;
@@ -19,6 +20,10 @@ export const Player = () => {
 
   const viewMode = useStore((state) => state.viewMode);
   const toggleViewMode = useStore((state) => state.toggleViewMode);
+
+  // Player rotation state for model facing direction
+  const [playerRotation, setPlayerRotation] = useState<[number, number, number]>([0, 0, 0]);
+  const [isMoving, setIsMoving] = useState(false);
 
   // State subscriptions
   const pos = useRef([0, 0, 0]);
@@ -79,6 +84,15 @@ export const Player = () => {
       .multiplyScalar(SPEED)
       .applyEuler(camera.rotation);
 
+    // Calculate player facing direction based on movement
+    if (direction.length() > 0.1) {
+      const angle = Math.atan2(direction.x, direction.z);
+      setPlayerRotation([0, angle, 0]);
+      setIsMoving(true);
+    } else {
+      setIsMoving(false);
+    }
+
     api.velocity.set(direction.x, vel.current[1], direction.z);
 
     if (jump && Math.abs(vel.current[1]) < 0.05) {
@@ -86,5 +100,17 @@ export const Player = () => {
     }
   });
 
-  return <mesh ref={ref as any} />;
+  return (
+    <>
+      <mesh ref={ref as any} />
+      {viewMode === 'thirdPerson' && (
+        <PlayerModel
+          position={[pos.current[0], pos.current[1] - 0.5, pos.current[2]]}
+          rotation={playerRotation}
+          isMoving={isMoving}
+          velocity={[vel.current[0], vel.current[1], vel.current[2]]}
+        />
+      )}
+    </>
+  );
 };

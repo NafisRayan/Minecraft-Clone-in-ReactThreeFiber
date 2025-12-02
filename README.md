@@ -8,6 +8,7 @@ A fully interactive 3D Minecraft-like voxel building game built with React, Thre
 - **Realistic Physics**: Gravity, collision detection, and dynamic interactions using Cannon.js
 - **Multiple Textures**: 5 different block types (Dirt, Grass, Glass, Wood, Log) with procedurally generated pixel-art textures
 - **First-Person & Third-Person Views**: Switch between immersive first-person and overview third-person camera modes
+- **3D Player Character**: Customizable player model with GLB support for third-person view
 - **World Persistence**: Save and load your creations using localStorage
 - **Responsive UI**: Modern, accessible interface with Tailwind CSS and Radix UI components
 - **Performance Optimized**: Efficient rendering with React Three Fiber and instanced meshes
@@ -114,6 +115,17 @@ src/
 ```
 
 ## 🎨 Customization
+
+### Adding Player Models
+
+The game supports custom 3D player models for third-person view:
+
+1. Place your GLB model file in `public/models/Steve.glb`
+2. The game will automatically load and display your custom model
+3. If no GLB is found, a simple blocky fallback character is used
+4. Models should be scaled to ~1 unit tall with origin at the feet
+
+See `public/models/README.md` for detailed instructions.
 
 ### Adding New Textures
 
