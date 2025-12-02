@@ -38,6 +38,7 @@ const StartMenu = ({ onStart, visible }: { onStart: () => void, visible: boolean
                         <div className="flex items-center gap-2"><MousePointer2 className="w-3 h-3" /> Place Block</div>
                         <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">ALT</kbd> + Click Break</div>
                         <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">1-5</kbd> Select</div>
+                        <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">V</kbd> Toggle View</div>
                         <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">ESC</kbd> Menu</div>
                      </div>
                  </div>
@@ -93,6 +94,7 @@ const Scene = ({ isLocked, setIsLocked }: { isLocked: boolean, setIsLocked: (v: 
 function App() {
   const saveWorld = useStore((state) => state.saveWorld);
   const resetWorld = useStore((state) => state.resetWorld);
+  const viewMode = useStore((state) => state.viewMode);
   const [isLocked, setIsLocked] = useState(false);
 
   return (
@@ -132,10 +134,11 @@ function App() {
         <div className={`absolute top-6 left-6 z-40 pointer-events-none transition-opacity duration-300 ${isLocked ? 'opacity-100' : 'opacity-0'}`}>
           <div className="bg-black/40 backdrop-blur-md p-4 rounded-xl border border-white/10 text-white space-y-2 shadow-xl">
               <div className="space-y-1 text-xs text-zinc-300">
-                  <div className="font-bold text-emerald-400 mb-1">Controls</div>
+                  <div className="font-bold text-emerald-400 mb-1">Controls - {viewMode === 'firstPerson' ? '1st Person' : '3rd Person'}</div>
                   <div className="flex items-center gap-2"><span className="opacity-50">WASD</span> Move</div>
                   <div className="flex items-center gap-2"><span className="opacity-50">Click</span> Build</div>
                   <div className="flex items-center gap-2"><span className="opacity-50">Alt+Click</span> Break</div>
+                  <div className="flex items-center gap-2"><span className="opacity-50">V</span> Toggle View</div>
               </div>
           </div>
         </div>

@@ -12,6 +12,7 @@ export const useKeyboard = () => {
     glass: false,
     wood: false,
     log: false,
+    toggleView: false,
   });
 
   useEffect(() => {
@@ -61,6 +62,7 @@ const codeToAction = (code: string) => {
     Digit3: 'glass',
     Digit4: 'wood',
     Digit5: 'log',
+    KeyV: 'toggleView',
   };
   return keyMap[code];
 };

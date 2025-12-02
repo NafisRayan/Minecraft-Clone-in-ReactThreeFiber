@@ -7,7 +7,7 @@ A fully interactive 3D Minecraft-like voxel building game built with React, Thre
 - **3D Voxel World**: Build and destroy blocks in a fully 3D environment
 - **Realistic Physics**: Gravity, collision detection, and dynamic interactions using Cannon.js
 - **Multiple Textures**: 5 different block types (Dirt, Grass, Glass, Wood, Log) with procedurally generated pixel-art textures
-- **First-Person Controls**: Smooth mouse look and WASD movement with pointer lock
+- **First-Person & Third-Person Views**: Switch between immersive first-person and overview third-person camera modes
 - **World Persistence**: Save and load your creations using localStorage
 - **Responsive UI**: Modern, accessible interface with Tailwind CSS and Radix UI components
 - **Performance Optimized**: Efficient rendering with React Three Fiber and instanced meshes
@@ -76,6 +76,7 @@ A fully interactive 3D Minecraft-like voxel building game built with React, Thre
 | Select Glass | `3` |
 | Select Wood | `4` |
 | Select Log | `5` |
+| Toggle View Mode | `V` |
 | Save World | Save Button (top-right) |
 | Reset World | Reset Button (top-right) |
 | Exit Pointer Lock | `Escape` |
