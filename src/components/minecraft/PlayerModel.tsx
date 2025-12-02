@@ -48,19 +48,20 @@ export const PlayerModel = ({
     ctx.fillRect(0, 0, 32, 16);
     ctx.fillRect(32, 0, 32, 16);
     
-    // Hair/facial features - brown
+    // Hair/facial features - brown (taller hair with more volume)
     ctx.fillStyle = '#6B4423';
-    ctx.fillRect(8, 0, 16, 8);
-    ctx.fillRect(8, 8, 8, 4);
-    ctx.fillRect(16, 8, 8, 4);
+    ctx.fillRect(8, 0, 16, 10); // Increased height for more hair
+    ctx.fillRect(6, 2, 20, 4); // Wider base
+    ctx.fillRect(8, 10, 8, 2); // Additional tuft
+    ctx.fillRect(16, 10, 8, 2);
     
-    // Eyes - white with blue pupils
+    // Eyes - white with blue pupils (moved lower)
     ctx.fillStyle = '#FFFFFF';
-    ctx.fillRect(8, 10, 3, 3);
-    ctx.fillRect(13, 10, 3, 3);
+    ctx.fillRect(8, 14, 3, 3);
+    ctx.fillRect(13, 14, 3, 3);
     ctx.fillStyle = '#4287F5';
-    ctx.fillRect(9, 11, 1, 1);
-    ctx.fillRect(14, 11, 1, 1);
+    ctx.fillRect(9, 15, 1, 1);
+    ctx.fillRect(14, 15, 1, 1);
 
     // Body - cyan shirt
     ctx.fillStyle = '#66CCCC';
@@ -192,18 +193,24 @@ export const PlayerModel = ({
           <meshStandardMaterial color={0xF0B478} roughness={0.8} />
         </mesh>
         
-        {/* Hair/top overlay */}
-        <mesh position={[0, 0.1, 0]} castShadow>
-          <boxGeometry args={[0.48, 0.15, 0.48]} />
+        {/* Hair/top overlay - moved higher and made taller */}
+        <mesh position={[0, 0.18, 0]} castShadow>
+          <boxGeometry args={[0.48, 0.21, 0.48]} />
           <primitive object={hairMaterial} attach="material" />
         </mesh>
         
-        {/* Eyes */}
-        <mesh position={[0.12, 0.05, 0.226]}>
+        {/* Additional hair tuft on top */}
+        <mesh position={[0, 0.25, 0]} castShadow>
+          <boxGeometry args={[0.42, 0.12, 0.42]} />
+          <primitive object={hairMaterial} attach="material" />
+        </mesh>
+        
+        {/* Eyes - moved slightly lower to create gap */}
+        <mesh position={[0.12, 0.02, 0.226]}>
           <boxGeometry args={[0.09, 0.09, 0.01]} />
           <meshStandardMaterial color={0x4287F5} />
         </mesh>
-        <mesh position={[-0.12, 0.05, 0.226]}>
+        <mesh position={[-0.12, 0.02, 0.226]}>
           <boxGeometry args={[0.09, 0.09, 0.01]} />
           <meshStandardMaterial color={0x4287F5} />
         </mesh>
