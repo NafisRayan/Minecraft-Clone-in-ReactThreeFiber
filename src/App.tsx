@@ -8,44 +8,9 @@ import { TextureSelector } from './components/minecraft/TextureSelector';
 import { Crosshair } from './components/minecraft/Crosshair';
 import { useStore } from './components/minecraft/hooks/useStore';
 import { Button } from './components/ui/button';
-import { RefreshCw, Save, MousePointer2, Play } from 'lucide-react';
+import { RefreshCw, Save } from 'lucide-react';
 import { Suspense, useState, useRef } from 'react';
 import { ErrorBoundary } from './components/ErrorBoundary';
-
-const StartMenu = ({ onStart, visible }: { onStart: () => void, visible: boolean }) => {
-    if (!visible) return null;
-    
-    return (
-        <Html fullscreen style={{ pointerEvents: 'auto' }} zIndexRange={[100, 0]}>
-            <div className="w-full h-full flex items-center justify-center bg-black/80 backdrop-blur-sm">
-                 <div className="text-center text-white space-y-6 p-8 bg-zinc-900/50 rounded-2xl border border-white/10 shadow-2xl max-w-md backdrop-blur-xl">
-                     <h1 className="text-4xl font-bold bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">Minecraft Clone</h1>
-                     
-                     <Button 
-                        size="lg" 
-                        className="w-full text-lg font-bold bg-green-600 hover:bg-green-500 text-white shadow-lg shadow-green-900/20 transition-all hover:scale-105"
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onStart();
-                        }}
-                     >
-                        <Play className="w-5 h-5 mr-2 fill-current" /> Click to Start
-                     </Button>
-
-                     <div className="grid grid-cols-2 gap-3 text-left text-xs text-zinc-400 bg-black/20 p-4 rounded-lg border border-white/5">
-                        <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">WASD</kbd> Move</div>
-                        <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">SPACE</kbd> Jump</div>
-                        <div className="flex items-center gap-2"><MousePointer2 className="w-3 h-3" /> Place Block</div>
-                        <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">ALT</kbd> + Click Break</div>
-                        <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">1-5</kbd> Select</div>
-                        <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">V</kbd> Toggle View</div>
-                        <div className="flex items-center gap-2"><kbd className="px-1.5 py-0.5 bg-white/10 rounded font-mono text-white">ESC</kbd> Menu</div>
-                     </div>
-                 </div>
-            </div>
-        </Html>
-    );
-};
 
 const Scene = ({ isLocked, setIsLocked }: { isLocked: boolean, setIsLocked: (v: boolean) => void }) => {
     const controlsRef = useRef<any>(null);
@@ -80,13 +45,6 @@ const Scene = ({ isLocked, setIsLocked }: { isLocked: boolean, setIsLocked: (v: 
                 onLock={() => setIsLocked(true)} 
                 onUnlock={() => setIsLocked(false)} 
             />
-            
-            <StartMenu 
-                visible={!isLocked} 
-                onStart={() => {
-                    controlsRef.current?.lock();
-                }} 
-            />
         </>
     );
 };
@@ -112,7 +70,7 @@ function App() {
           <Button 
             variant="outline" 
             className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               saveWorld();
             }}
@@ -122,7 +80,7 @@ function App() {
           <Button 
             variant="outline" 
             className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-red-500/50 hover:border-red-500/50 transition-colors"
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
               e.stopPropagation();
               resetWorld();
             }}
