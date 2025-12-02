@@ -7,9 +7,10 @@ A fully interactive 3D Minecraft-like voxel building game built with React, Thre
 - **3D Voxel World**: Build and destroy blocks in a fully 3D environment
 - **Realistic Physics**: Gravity, collision detection, and dynamic interactions using Cannon.js
 - **Multiple Textures**: 5 different block types (Dirt, Grass, Glass, Wood, Log) with procedurally generated pixel-art textures
-- **First-Person & Third-Person Views**: Switch between immersive first-person and overview third-person camera modes
-- **3D Player Character**: Customizable player model with GLB support for third-person view
-- **World Persistence**: Save and load your creations using localStorage
+- **Smooth Camera**: Camera follows player with configurable lerp smoothing for cinematic feel
+- **Input Smoothing**: Movement inputs are smoothed to reduce jerky controls
+- **Movement Prediction**: Slight forward prediction makes controls feel more responsive
+- **Fluid Animations**: Character walking animations use easing functions and smooth transitions
 - **Responsive UI**: Modern, accessible interface with Tailwind CSS and Radix UI components
 - **Performance Optimized**: Efficient rendering with React Three Fiber and instanced meshes
 
@@ -59,6 +60,18 @@ A fully interactive 3D Minecraft-like voxel building game built with React, Thre
 1. Click "Click to Start" on the welcome screen
 2. Your mouse will be captured for camera control
 3. Use the controls below to build your world!
+
+## 🎮 Gameplay Features
+
+### Smooth Movement System
+
+The game features a highly polished movement system designed for the best player experience:
+
+- **Camera Smoothing**: Camera position lerps smoothly to follow the player, eliminating jerky movements
+- **Input Buffering**: Movement inputs are smoothed to prevent stuttering and provide fluid control
+- **Movement Prediction**: Slight forward prediction makes controls feel instant and responsive
+- **Animation Easing**: Character animations use smooth easing functions instead of abrupt transitions
+- **Rotation Smoothing**: Player model rotation changes are interpolated for natural turning
 
 ### Controls
 

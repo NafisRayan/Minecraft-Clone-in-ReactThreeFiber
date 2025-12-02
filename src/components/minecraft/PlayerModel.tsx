@@ -29,6 +29,10 @@ export const PlayerModel = ({
   const rightLegRef = useRef<THREE.Group>(null);
   
   const animationTime = useRef(0);
+  const currentPosition = useRef(new THREE.Vector3(...position));
+  const currentRotation = useRef(new THREE.Euler(...rotation));
+  const targetPosition = useRef(new THREE.Vector3(...position));
+  const targetRotation = useRef(new THREE.Euler(...rotation));
 
   // Load a simple texture for Steve's skin
   const skinTexture = useMemo(() => {
@@ -85,30 +89,65 @@ export const PlayerModel = ({
 
   // Animation loop for walking
   useFrame((state, delta) => {
+    // Update target position and rotation
+    targetPosition.current.set(...position);
+    targetRotation.current.set(...rotation);
+
+    // Smooth position and rotation
+    currentPosition.current.lerp(targetPosition.current, delta * 15); // Fast position lerp
+    currentRotation.current.x = THREE.MathUtils.lerp(currentRotation.current.x, targetRotation.current.x, delta * 10);
+    currentRotation.current.y = THREE.MathUtils.lerp(currentRotation.current.y, targetRotation.current.y, delta * 10);
+    currentRotation.current.z = THREE.MathUtils.lerp(currentRotation.current.z, targetRotation.current.z, delta * 10);
+
+    // Apply smoothed transforms
+    if (groupRef.current) {
+      groupRef.current.position.copy(currentPosition.current);
+      groupRef.current.rotation.copy(currentRotation.current);
+    }
+
     if (!isMoving) {
       animationTime.current = 0;
+      
+      // Smoothly return to idle position
+      if (leftArmRef.current) {
+        leftArmRef.current.rotation.x = THREE.MathUtils.lerp(leftArmRef.current.rotation.x, 0, delta * 5);
+      }
+      if (rightArmRef.current) {
+        rightArmRef.current.rotation.x = THREE.MathUtils.lerp(rightArmRef.current.rotation.x, 0, delta * 5);
+      }
+      if (leftLegRef.current) {
+        leftLegRef.current.rotation.x = THREE.MathUtils.lerp(leftLegRef.current.rotation.x, 0, delta * 5);
+      }
+      if (rightLegRef.current) {
+        rightLegRef.current.rotation.x = THREE.MathUtils.lerp(rightLegRef.current.rotation.x, 0, delta * 5);
+      }
       return;
     }
 
     animationTime.current += delta * 8;
     
-    const swing = Math.sin(animationTime.current);
-    const swingAmount = 0.5;
+    // Use smoother easing function instead of simple sine
+    const swing = Math.sin(animationTime.current) * (1 - Math.abs(Math.sin(animationTime.current * 0.5)) * 0.3);
+    const swingAmount = 0.6; // Slightly more pronounced swing
 
-    // Animate arms (opposite swing)
+    // Animate arms (opposite swing) with slight delay for natural feel
     if (leftArmRef.current) {
-      leftArmRef.current.rotation.x = swing * swingAmount;
+      const armSwing = Math.sin(animationTime.current + 0.2) * swingAmount;
+      leftArmRef.current.rotation.x = THREE.MathUtils.lerp(leftArmRef.current.rotation.x, armSwing, delta * 10);
     }
     if (rightArmRef.current) {
-      rightArmRef.current.rotation.x = -swing * swingAmount;
+      const armSwing = Math.sin(animationTime.current + Math.PI + 0.2) * swingAmount;
+      rightArmRef.current.rotation.x = THREE.MathUtils.lerp(rightArmRef.current.rotation.x, armSwing, delta * 10);
     }
 
-    // Animate legs (opposite swing)
+    // Animate legs (opposite swing) with slight phase difference
     if (leftLegRef.current) {
-      leftLegRef.current.rotation.x = -swing * swingAmount;
+      const legSwing = Math.sin(animationTime.current) * swingAmount;
+      leftLegRef.current.rotation.x = THREE.MathUtils.lerp(leftLegRef.current.rotation.x, legSwing, delta * 10);
     }
     if (rightLegRef.current) {
-      rightLegRef.current.rotation.x = swing * swingAmount;
+      const legSwing = Math.sin(animationTime.current + Math.PI) * swingAmount;
+      rightLegRef.current.rotation.x = THREE.MathUtils.lerp(rightLegRef.current.rotation.x, legSwing, delta * 10);
     }
   });
 
